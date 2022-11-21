@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBbzNvOsBAWeBEMaARzBUvD2RQ3N1tlUi8",
@@ -13,7 +14,7 @@ const firebaseConfig = {
   };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 export function signup(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -38,3 +39,5 @@ export function useAuth() {
 
   return currentUser;
 }
+
+export const db = getFirestore(app);
