@@ -35,5 +35,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Firebase ID and Password
 
-team.purple@gmail.com
+team.purple3130@gmail.com
 qwerty123#
