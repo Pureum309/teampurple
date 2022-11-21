@@ -13,6 +13,7 @@ export default function App() {
     setLoading(true);
     // try {
       await signup(emailRef.current.value, passwordRef.current.value);
+      window.location = "/HomePage";
     // } catch {
       // alert("Error!");
     // }
@@ -23,12 +24,12 @@ export default function App() {
     setLoading(true);
     try {
       await login(emailRef.current.value, passwordRef.current.value);
+      window.location = "/HomePage";
       
     } catch {
       alert("Error!");
     }
     setLoading(false);
-    window.location = "/HomePage";
   }
 
   return (

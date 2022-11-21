@@ -14,11 +14,11 @@ export default function Home() {
     setLoading(true);
     try {
       await logout();
+      window.location = "/";
     } catch {
       alert("Error!");
     }
     setLoading(false);
-    window.location = "/";
   }
 
   return (
