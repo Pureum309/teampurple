@@ -28,22 +28,13 @@ export default function App() {
       alert("Error!");
     }
     setLoading(false);
-  }
-
-  async function handleLogout() {
-    setLoading(true);
-    try {
-      await logout();
-    } catch {
-      alert("Error!");
-    }
-    setLoading(false);
+    window.location = "/HomePage";
   }
 
   return (
     <div id="main">
       
-      <div>Currently logged in as: { currentUser?.email } </div>
+      <h1>Welcome to our Social media</h1>
 
       <div id="fields">
         <input ref={emailRef} placeholder="Email" />
@@ -52,8 +43,6 @@ export default function App() {
 
       <button disabled={ loading || currentUser } onClick={handleSignup}>Sign Up</button>
       <button disabled={ loading || currentUser } onClick={handleLogin}>Log In</button>
-      <button disabled={ loading || !currentUser } onClick={handleLogout}>Log Out</button>
-
     </div>
   );
 }
