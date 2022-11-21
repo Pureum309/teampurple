@@ -2,19 +2,18 @@ import { useEffect, useState } from "react";
 
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCIR5GSNhNUqJ-KZMVAyz3L0inw_ATm16I",
-  authDomain: "purple-db-f8b90.firebaseapp.com",
-  projectId: "purple-db-f8b90",
-  storageBucket: "purple-db-f8b90.appspot.com",
-  messagingSenderId: "345335363425",
-  appId: "1:345335363425:web:e4113fb602d02b6cd93720"
+  apiKey: "AIzaSyBbzNvOsBAWeBEMaARzBUvD2RQ3N1tlUi8",
+  authDomain: "purple-data-7fe35.firebaseapp.com",
+  projectId: "purple-data-7fe35",
+  storageBucket: "purple-data-7fe35.appspot.com",
+  messagingSenderId: "1008620037133",
+  appId: "1:1008620037133:web:67e92dd2e70ee4536e6144"
   };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const auth = getAuth(app);
 
 export function signup(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -39,5 +38,3 @@ export function useAuth() {
 
   return currentUser;
 }
-
-export const db = getFirestore(app);
