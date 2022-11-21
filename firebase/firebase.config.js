@@ -38,3 +38,5 @@ export function useAuth() {
 
   return currentUser;
 }
+
+export { auth };

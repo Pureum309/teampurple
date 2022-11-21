@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import { signup, login, logout, useAuth } from "../firebase/firebase.config.js";
 import { useNagigate } from 'react-router-dom';
 
-export default function App() {
+export default function Home() {
 
   return (
     <div id="main">
