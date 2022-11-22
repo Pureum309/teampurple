@@ -55,6 +55,7 @@ export default function Home() {
                   margin:"10px"
                   }}>
                   <h2> {post.postText}</h2>
+                  <h6>Posted by {post.author.user}</h6>
               </div>
             </div>        
           );
