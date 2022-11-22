@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase/firebase.config.js";
-import { useNavigate } from "react-router-dom";
 import { useRouter } from 'next/router'
 
 
