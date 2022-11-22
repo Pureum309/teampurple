@@ -16,7 +16,7 @@ function CreatePost() {
   const createPost = async () => {
     await addDoc(postsCollectionRef, {
       postText,
-      author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+      author: { user: auth.currentUser.email, id: auth.currentUser.uid },
     });
     router.push("/HomePage");
   };
