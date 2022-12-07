@@ -24,17 +24,24 @@ export default function Home() {
     setLoading(false);
   }
 
-  const [postLists, setPostList] = useState([]);
+  const [postLists, setPostList] = useState(null);
   const postsCollectionRef = collection(db, "posts");
 
-
   useEffect(() => {
+    console.log("useEffect");
     const getPosts = async () => {
+      console.log("getPosts");
     const data = await getDocs(postsCollectionRef);
-    setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    let tempPosts = [];
+    data.docs.map((doc) => 
+    tempPosts.push({ ...doc.data(), id: doc.id }));
+    console.log(tempPosts.length);
+    setPostList(tempPosts);
   };
 
-    getPosts();
+    if (postLists === null) {
+      getPosts();
+    }
   });
 
   return (
@@ -45,7 +52,8 @@ export default function Home() {
       <CreatePost />
 
       <div id="PostDisplay">
-        {postLists.map((post) => {
+      {postLists !== null &&
+        postLists.map((post) => {
           return (
             <div className="post">
               <div className="postHeader" 
