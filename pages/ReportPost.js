@@ -18,8 +18,8 @@ import {
 async function ReportPost() {
     const [post, setPost] = useState();
 
-    // const reportCollectionRef = collection(db, "report");
-    // const postsCollectionRef = collection(db, "posts");
+    const reportCollectionRef = collection(db, "report");
+    const postsCollectionRef = collection(db, "posts");
 
     const router = useRouter()
 
@@ -46,22 +46,6 @@ async function ReportPost() {
     </div>
   );
  
-    // const GetData = async () => {
-    //     const db = getFirestore();
-
-    //     const querrySnapshot = await getDocs(collection(db, "user"));
-
-    //     const dbusers = [];
-    //     QuerySnapshot.forEch((doc) => {
-    //         console.log(doc.id, " => ", doc.data());
-    //         dbusers.push(doc.data())
-    //         ;
-    //     });
-
-    //     setUsers([
-    //         ...dbusers
-    //     ])
-    // }
 }
 
 export default ReportPost;

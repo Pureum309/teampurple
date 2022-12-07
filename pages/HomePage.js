@@ -5,7 +5,7 @@ import CreatePost from "./CreatePost";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase/firebase.config";
 
-import { ReportPost} from "../pages/ReportPost";
+import ReportPost from "../pages/ReportPost";
 
 export default function Home() {
 
