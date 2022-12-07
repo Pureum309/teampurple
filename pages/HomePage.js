@@ -29,6 +29,7 @@ export default function Home() {
 
   const [postLists, setPostList] = useState(null);
   const [followers, setFollowers] = useState(null);
+  const [reportUser, setReportUser] = useState("");
 
   const postsCollectionRef = collection(db, "posts");
 
@@ -86,6 +87,10 @@ export default function Home() {
       setFollowers([...followers]);
     }
   }
+  const reportPress = (user) => {
+    console.log("report!!!" + user);
+    setReportUser(user);
+  }
 
   return (
     <div id="main">
@@ -97,17 +102,23 @@ export default function Home() {
       <div id="PostDisplay">
       {postLists !== null &&
         postLists.map((post) => {
-          return (
-            <div className="post">
-              <div className="postHeader" 
-                  style={{
-                  borderStyle: "solid",
-                  borderWidth: "2px",
-                  margin:"10px"
-                  }}>
-                  <h2> {post.postText}</h2>
-                  <h6>Posted by {post.author.user}</h6>
-                  {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
+          if (post.author.user != reportUser) {
+            return (
+              <div className="post">
+                <div className="postHeader" 
+                    style={{
+                    borderStyle: "solid",
+                    borderWidth: "2px",
+                    margin:"10px"
+                    }}>
+                    <h2> {post.postText}</h2>
+                    <h6>Posted by {post.author.user}</h6>
+                    <button onClick={() => {
+                      if (window.confirm("Are you sure to report this post")){
+                      reportPress(post.author.user)}
+                    }}
+                    > Report</button>
+                    {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
                   <>
                   <button onClick={() => followPress(post.author.id)}>Follow</button>
                   </>
@@ -124,10 +135,45 @@ export default function Home() {
                   {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
                   <button onClick={() => unfollowPress(post.author.id)}>Unfollow</button>
                   }
-              </div>
-              {/* <ReportPost /> */}
-            </div>        
-          );
+                </div>
+                {/* <ReportPost /> */}
+              </div>        
+            );
+          } else {
+            return (
+              <div className="post">
+                <div className="postHeader" 
+                    style={{
+                    borderStyle: "solid",
+                    borderWidth: "2px",
+                    margin:"10px",
+                    backgroundColor: "red"
+                    }}>
+                    <h2> {post.postText}</h2>
+                    <h6>Posted by {post.author.user}</h6>
+                    <button onClick={() => reportPress(post.author.user)}> Report</button>
+                    {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
+                  <>
+                  <button onClick={() => followPress(post.author.id)}>Follow</button>
+                  </>
+                  }
+                  {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
+                   <button onClick={() => unfollowPress(post.author.id)} disabled={true}>Unfollow</button>
+                  }
+                  {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
+                  <>
+                  <h6>Now your are following: {post.author.user}</h6>
+                  <button onClick={() => followPress(post.author.id)} disabled={true}>Follow</button>
+                  </>
+                  }
+                  {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
+                  <button onClick={() => unfollowPress(post.author.id)}>Unfollow</button>
+                  }
+                </div>
+                {/* <ReportPost /> */}
+              </div>        
+            );
+          }
         })}
       </div>
 
