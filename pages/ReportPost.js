@@ -23,22 +23,22 @@ async function ReportPost() {
 
     const router = useRouter()
 
-    const reportPost = async () => {
+    // const reportPost = async () => {
 
        
-        if(window.confirm("Are you sure to report this post")){
-            deleteDoc(doc(db, "post", id))
-            deleteObject(ref(storage, `posts/${id}`))
-            // post.data().id 
-        }
+        // if (window.confirm("Are you sure to report this post")){
+        //     deleteDoc(doc(db, "post", id));
+        //     deleteObject(ref(storage, `posts/${id}`))
+        //     // post.data().id 
+        // }
 
     router.push("/HomePage");
-};
+
 
   return (
     <div className="reportPostBtn">
       <div className="reportPostContainer">
-        <button onClick={reportPost}>Report Post</button>
+        <button onClick={ReportPost}>Report Post</button>
       </div>
     </div>
   );
