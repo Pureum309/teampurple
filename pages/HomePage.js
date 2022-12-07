@@ -117,13 +117,13 @@ export default function Home({dev}) {
                     <h2> {post.postText}</h2>
                     <h6>Posted by {post.author.user}</h6>
                     <button onClick={()=>seteditbox(true)}>Edit</button>
-                  {editbox === true && <EditPost dev ={dev} seteditbox={seteditbox}/>}
+                  {editbox === true && <EditPost dev ={dev} seteditbox={seteditbox} id={post.id} />}
                     <button onClick={() => {
                       if (window.confirm("Are you sure to report this post")){
                       reportPress(post.author.user)}
                     }}
                     > Report</button>
-                    {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
+                  {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
                   <>
                   <button onClick={() => followPress(post.author.id)}>Follow</button>
                   </>

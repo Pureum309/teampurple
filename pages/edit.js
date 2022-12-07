@@ -1,17 +1,27 @@
 import { refEqual } from "firebase/firestore";
 import React, {useState} from "react";
 
-function EditPost({dev,seteditbox}){
+import { collection, addDoc, setDoc, getDocs, getFirestore, getDoc, doc } from "firebase/firestore";
+import {db} from '../firebase/firebase.config'
+
+function EditPost({dev,seteditbox, id, route}){
 
     const [postText, setPostText] = useState("");
 
+    const UpdatePost = () => {
+        // const userRef = doc(db, 'posts', id);
+        // setDoc(userRef, {
+        //     postText: postText
+        // }, { merge: true})
+        console.log(id + "hereeee");
+    }
+
     return(
         <div>
-           <p>editbox</p>
-           <input type = "text" placeholder="postText" onChange={(e)=>setPostText(e.target.value)}/>
-           <button onChange={() => {
-                seteditbox(false)
-           }}>update</button>
+           <p>Edit Your Post</p>
+           <textarea style={{width:"40%"}}
+            placeholder="Edit your post..." onChangeText={(txt)=>setPostText(txt)}/>
+           <button onPress={UpdatePost}>update</button>
         </div>
     )
 }
