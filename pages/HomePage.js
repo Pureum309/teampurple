@@ -1,17 +1,38 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import { signup, login, logout, useAuth } from "../firebase/firebase.config.js";
 import CreatePost from "./CreatePost";
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "../firebase/firebase.config";
+import { getDocs, collection, addDoc, query, where } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { db, auth} from "../firebase/firebase.config";
+
+
 
 export default function Home() {
-
+  
   const [ loading, setLoading ] = useState(false);
   const currentUser = useAuth();
 
   const emailRef = useRef();
   const passwordRef = useRef();
+
+  // -----Likes function-----
+  const [user] = useAuthState(auth);
+  const [likeAmount, setLikeAmount] = useState(null);
+
+  const likesRef = collection(db,"likes");
+  
+  const likesDoc = query(likesRef, where("postId", "==", auth.currentUser.email));
+
+  const getLikes = async () => {
+    const data = await getDocs(likesDoc);
+    setLikeAmount(data.docs.length);
+  };
+
+  const addLike = async () => {
+    await addDoc(likesRef, {userId: auth.currentUser.email , postId: user?.uid});
+  };
+
+  //-------------------------------
 
   async function handleLogout() {
     setLoading(true);
@@ -28,21 +49,24 @@ export default function Home() {
   const postsCollectionRef = collection(db, "posts");
 
   useEffect(() => {
+    //----------------------------------------------
+    getLikes();
+    //----------------------------------------------
     console.log("useEffect");
     const getPosts = async () => {
       console.log("getPosts");
-    const data = await getDocs(postsCollectionRef);
-    let tempPosts = [];
-    data.docs.map((doc) => 
-    tempPosts.push({ ...doc.data(), id: doc.id }));
-    console.log(tempPosts.length);
-    setPostList(tempPosts);
-  };
+      const data = await getDocs(postsCollectionRef);
+      let tempPosts = [];
+      data.docs.map((doc) => 
+      tempPosts.push({ ...doc.data(), id: doc.id }));
+      console.log(tempPosts.length);
+      setPostList(tempPosts);
+    };
 
     if (postLists === null) {
       getPosts();
     }
-  });
+  },[]);
 
   return (
     <div id="main">
@@ -64,6 +88,9 @@ export default function Home() {
                   }}>
                   <h2> {post.postText}</h2>
                   <h6>Posted by {post.author.user}</h6>
+                  {/* -------Likes button------- */}
+                  <button onClick={addLike}> &#128077; </button>
+                  {likeAmount && <p>Likes: {likeAmount}</p>}
               </div>
             </div>        
           );

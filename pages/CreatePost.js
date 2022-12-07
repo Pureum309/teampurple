@@ -3,7 +3,6 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase/firebase.config.js";
 import { useRouter } from 'next/router'
 
-
 function CreatePost() {
   const [postText, setPostText] = useState("");
 
