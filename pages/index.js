@@ -23,7 +23,7 @@ export default function App() {
   async function handleLogin() {
     setLoading(true);
     try {
-      await login(emailRef.current.value, passwordRef.current.value);
+      const user = await login(emailRef.current.value, passwordRef.current.value);
       window.location = "/HomePage";
       
     } catch {
