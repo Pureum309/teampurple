@@ -5,12 +5,12 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, on
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBbzNvOsBAWeBEMaARzBUvD2RQ3N1tlUi8",
-  authDomain: "purple-data-7fe35.firebaseapp.com",
-  projectId: "purple-data-7fe35",
-  storageBucket: "purple-data-7fe35.appspot.com",
-  messagingSenderId: "1008620037133",
-  appId: "1:1008620037133:web:67e92dd2e70ee4536e6144"
+  apiKey: "AIzaSyDiljGRaDoBd8vV0a5lA3JOPWX8sJiBgJ4",
+  authDomain: "database-e342b.firebaseapp.com",
+  projectId: "database-e342b",
+  storageBucket: "database-e342b.appspot.com",
+  messagingSenderId: "520876269296",
+  appId: "1:520876269296:web:b5162025fa736dc4fc2c35"
   };
 
 const app = initializeApp(firebaseConfig);
