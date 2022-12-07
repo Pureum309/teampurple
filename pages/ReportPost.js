@@ -16,7 +16,7 @@ import {
   // );
 
 async function ReportPost() {
-    const [post, setPost] = useState();
+    // const [post, setPost] = useState();
 
     // const reportCollectionRef = collection(db, "report");
     // const postsCollectionRef = collection(db, "posts");

@@ -27,8 +27,9 @@ export default function Home() {
   }
 
   const [postLists, setPostList] = useState(null);
-  const postsCollectionRef = collection(db, "posts");
   const [reportUser, setReportUser] = useState("");
+
+  const postsCollectionRef = collection(db, "posts");
 
   useEffect(() => {
     console.log("useEffect");
@@ -64,46 +65,43 @@ export default function Home() {
         postLists.map((post) => {
           if (post.author.user != reportUser) {
             return (
+              <div className="post">
+                <div className="postHeader" 
+                    style={{
+                    borderStyle: "solid",
+                    borderWidth: "2px",
+                    margin:"10px"
+                    }}>
+                    <h2> {post.postText}</h2>
+                    <h6>Posted by {post.author.user}</h6>
+                    <button onClick={() => reportPress(post.author.user)}> Report</button>
+                </div>
+                {/* <ReportPost /> */}
+              </div>        
+            );
+          } else {
+            return (
+              <div className="post">
+                <div className="postHeader" 
+                    style={{
+                    borderStyle: "solid",
+                    borderWidth: "2px",
+                    margin:"10px",
+                    backgroundColor: "red"
+                    }}>
+                    <h2> {post.postText}</h2>
+                    <h6>Posted by {post.author.user}</h6>
+                    <button onClick={() => reportPress(post.author.user)}> Report</button>
+                </div>
+                {/* <ReportPost /> */}
+              </div>        
+            );
+          }
+        })}
+      </div>
 
-            <div className="post">
-              <div className="postHeader" 
-                  style={{
-                  borderStyle: "solid",
-                  borderWidth: "2px",
-                  margin:"10px"
-                  }}>
-                  <h2> {post.postText}</h2>
-                  <h6>Posted by {post.author.user}</h6>
-                  <button onClick={() => reportPress(post.author.user)}> Report</button>
-              </div>
-              {/* <ReportPost /> */}
-              
-            </div>        
-          );
-
-        } else {
-          return (
-            <div className="post">
-              <div className="postHeader" 
-                  style={{
-                  borderStyle: "solid",
-                  borderWidth: "2px",
-                  margin:"10px",
-                  backgroundColor: "red"
-                  }}>
-                  <h2> {post.postText}</h2>
-                  <h6>Posted by {post.author.user}</h6>
-                  <button onClick={() => reportPress(post.author.user)}> Report</button>
-              </div>
-              {/* <ReportPost /> */}
-            </div>        
-          );
-        }
-      })}
     </div>
-
-  </div>
-  
-);
+    
+  );
 
 }
