@@ -18,16 +18,13 @@ import {
 async function ReportPost() {
     const [post, setPost] = useState();
 
-    const reportCollectionRef = collection(db, "report");
-    const postsCollectionRef = collection(db, "posts");
+    // const reportCollectionRef = collection(db, "report");
+    // const postsCollectionRef = collection(db, "posts");
 
     const router = useRouter()
 
     const reportPost = async () => {
-      // await addDoc(postsCollectionRef, {
-      //   postText,
-      //   author: { user: auth.currentUser.email, id: auth.currentUser.uid },
-      // });
+
        
         if(window.confirm("Are you sure to report this post")){
             deleteDoc(doc(db, "post", id))
