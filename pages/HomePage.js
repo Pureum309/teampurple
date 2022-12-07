@@ -4,6 +4,7 @@ import { signup, login, logout, useAuth } from "../firebase/firebase.config.js";
 import CreatePost from "./CreatePost";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase/firebase.config";
+import {Button} from "react-native";
 
 export default function Home() {
 
@@ -56,6 +57,7 @@ export default function Home() {
                   }}>
                   <h2> {post.postText}</h2>
                   <h6>Posted by {post.author.user}</h6>
+                  <Button tittle="View Profile" onPress={() => navigation.navigate('Profile')}></Button>
               </div>
             </div>        
           );
