@@ -74,7 +74,11 @@ export default function Home() {
                     }}>
                     <h2> {post.postText}</h2>
                     <h6>Posted by {post.author.user}</h6>
-                    <button onClick={() => reportPress(post.author.user)}> Report</button>
+                    <button onClick={() => {
+                      if (window.confirm("Are you sure to report this post")){
+                      reportPress(post.author.user)}
+                    }}
+                    > Report</button>
                 </div>
                 {/* <ReportPost /> */}
               </div>        
