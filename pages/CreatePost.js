@@ -12,7 +12,7 @@ function CreatePost() {
 
   const router = useRouter()
 
-  const createPost = async () => {
+  const postingPress = async () => {
     await addDoc(postsCollectionRef, {
       postText,
       author: { user: auth.currentUser.email, id: auth.currentUser.uid },
@@ -34,7 +34,7 @@ function CreatePost() {
             }}
           />
         </div>
-        <button onClick={createPost}> Submit Post</button>
+        <button onClick={postingPress}> Submit Post</button>
       </div>
     </div>
   );
