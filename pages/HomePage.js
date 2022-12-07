@@ -5,6 +5,8 @@ import CreatePost from "./CreatePost";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase/firebase.config";
 
+import { ReportPost} from "../pages/ReportPost";
+
 export default function Home() {
 
   const [ loading, setLoading ] = useState(false);
@@ -57,6 +59,7 @@ export default function Home() {
                   <h2> {post.postText}</h2>
                   <h6>Posted by {post.author.user}</h6>
               </div>
+              <ReportPost />
             </div>        
           );
         })}
