@@ -4,8 +4,9 @@ import { signup, login, logout, useAuth } from "../firebase/firebase.config.js";
 import CreatePost from "./CreatePost";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase/firebase.config";
+import EditPost from "./Edit.js";
 
-export default function Home() {
+export default function Home({dev}) {
 
   const [ loading, setLoading ] = useState(false);
   const currentUser = useAuth();
@@ -26,6 +27,8 @@ export default function Home() {
 
   const [postLists, setPostList] = useState(null);
   const postsCollectionRef = collection(db, "posts");
+
+  const [editbox,seteditbox] = useState(false)
 
   useEffect(() => {
     console.log("useEffect");
@@ -64,6 +67,8 @@ export default function Home() {
                   }}>
                   <h2> {post.postText}</h2>
                   <h6>Posted by {post.author.user}</h6>
+                  <button onClick={()=>seteditbox(true)}>Edit</button>
+                  {editbox === true && <EditPost dev ={dev} seteditbox={seteditbox}/>}
               </div>
             </div>        
           );

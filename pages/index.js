@@ -42,8 +42,8 @@ export default function App() {
         <input ref={passwordRef} type="password" placeholder="Password" />
       </div>
 
-      <button disabled={ loading || currentUser } onClick={handleSignup}>Sign Up</button>
-      <button disabled={ loading || currentUser } onClick={handleLogin}>Log In</button>
+      <button onClick={handleSignup}>Sign Up</button>
+      <button onClick={handleLogin}>Log In</button>
     </div>
   );
 }

@@ -21,6 +21,7 @@ function CreatePost() {
   };
 
 
+
   return (
     <div className="createPostPage">
       <div className="cpContainer">
