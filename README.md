@@ -17,13 +17,13 @@ We used React + Firebase to build the entire web
 
 ## Firebase ID and Password
 
-team.purple3130@gmail.com
-qwerty123#
+- email: team.purple3130@gmail.com
+- pwd: qwerty123#
 (Projects name is databse)
 
 ## Testing Email and Passwrod
-email: test@gmail.com
-pwd: qwerty
+- email: test@gmail.com
+- pwd: qwerty
 
 ## Task completed
 - Signup and login - Sarah
