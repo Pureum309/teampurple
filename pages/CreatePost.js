@@ -18,7 +18,7 @@ function CreatePost() {
       postText,
       author: { user: auth.currentUser.email, id: auth.currentUser.uid },
     });
-    router.push("/HomePage");
+    window.location = "/HomePage";
   };
 
 
