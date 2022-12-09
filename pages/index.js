@@ -38,7 +38,7 @@ export default function App() {
   }
 
   return (
-    <div className={styles.row}>
+    <div>
 
       <div className={styles.colRight}>
         <Image 

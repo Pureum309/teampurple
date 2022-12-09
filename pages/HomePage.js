@@ -8,6 +8,13 @@ import { db } from "../firebase/firebase.config";
 import ReportPost from "../pages/ReportPost";
 import {loginUser} from '../pages/index.js';
 
+import styles from "../styles/Home.module.css";
+import Image from  'next/image';
+import logoImg from "../assets/logo.png";
+import { MdOutlineReportProblem } from "react-icons/md";
+import { RiUserFollowLine, RiUserUnfollowLine } from "react-icons/ri";
+
+
 export default function Home() {
 
   const [ loading, setLoading ] = useState(false);
@@ -93,82 +100,100 @@ export default function Home() {
   }
 
   return (
-    <div id="main">
+    <div id='main' className={styles.main}>
+       <Image 
+          src={logoImg} 
+          alt="/"
+          width="120"
+          height="120"
+        />
+      <div className={styles.rowLeft}>
+        <div className={styles.userInfo}>
+          <div>Currently logged in as: </div>
+          <div>{ currentUser?.email } </div>
+        </div>
+          <button className={styles.smallBtn} disabled={ loading || !currentUser } onClick={handleLogout}>Log Out</button>
+      </div>
       
-      <div>Currently logged in as: { currentUser?.email } </div>
-      <button disabled={ loading || !currentUser } onClick={handleLogout}>Log Out</button>
-      <CreatePost />
+
+      
+        <CreatePost />
+     
+     
 
       <div id="PostDisplay">
       {postLists !== null &&
         postLists.map((post) => {
           if (post.author.user != reportUser) {
             return (
-              <div className="post">
-                <div className="postHeader" 
-                    style={{
-                    borderStyle: "solid",
-                    borderWidth: "2px",
-                    margin:"10px"
-                    }}>
+              <div className={styles.post}>
+                <div className={styles.postHeader}>
                     <h2> {post.postText}</h2>
-                    <h6>Posted by {post.author.user}</h6>
-                    <button onClick={() => {
-                      if (window.confirm("Are you sure to report this post")){
-                      reportPress(post.author.user)}
-                    }}
-                    > Report</button>
+                    <h5>Posted by {post.author.user}</h5>
+                    <div className={styles.btnCont}>
+                      <button className={styles.smallBtn} onClick={() => {
+                        if (window.confirm("Are you sure to report this post")){
+                        reportPress(post.author.user)}
+                      }}
+                      > 
+                      <MdOutlineReportProblem className={styles.icon}/>
+                      Report</button>
+                      {/* {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
+                    <>
+                    <button onClick={() => followPress(post.author.id)}>Follow</button>
+                    </>
+                    }
                     {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
-                  <>
-                  <button onClick={() => followPress(post.author.id)}>Follow</button>
-                  </>
-                  }
-                  {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
-                   <button onClick={() => unfollowPress(post.author.id)} disabled={true}>Unfollow</button>
-                  }
-                  {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
-                  <>
-                  <h6>Now your are following: {post.author.user}</h6>
-                  <button onClick={() => followPress(post.author.id)} disabled={true}>Follow</button>
-                  </>
-                  }
-                  {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
-                  <button onClick={() => unfollowPress(post.author.id)}>Unfollow</button>
-                  }
+                    <button onClick={() => unfollowPress(post.author.id)} disabled={true}>Unfollow</button>
+                    }
+                    {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
+                    <>
+                    <h6>Now your are following: {post.author.user}</h6>
+                    <button onClick={() => followPress(post.author.id)} disabled={true}>Follow</button>
+                    </>
+                    }
+                    {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
+                    <button onClick={() => unfollowPress(post.author.id)}>Unfollow</button>
+                    } */}
+                    <button className={styles.smallBtn}> <RiUserFollowLine className={styles.icon}/> Follow</button>
+                    <button className={styles.smallBtn}> <RiUserUnfollowLine className={styles.icon}/> Unfollow</button>
+                  </div>
                 </div>
                 {/* <ReportPost /> */}
               </div>        
             );
           } else {
             return (
-              <div className="post">
-                <div className="postHeader" 
-                    style={{
-                    borderStyle: "solid",
-                    borderWidth: "2px",
-                    margin:"10px",
-                    backgroundColor: "red"
-                    }}>
+              <div className={styles.post}>
+                <div className={styles.postHeader}>
                     <h2> {post.postText}</h2>
-                    <h6>Posted by {post.author.user}</h6>
-                    <button onClick={() => reportPress(post.author.user)}> Report</button>
+                    <h5>Posted by {post.author.user}</h5>
+                    <div className={styles.btnCont}>
+                      <button className={styles.smallBtn} onClick={() => {
+                        if (window.confirm("Are you sure to report this post")){
+                        reportPress(post.author.user)}
+                      }}
+                      > 
+                      <MdOutlineReportProblem className={styles.icon}/>
+                      Report</button>
                     {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
-                  <>
-                  <button onClick={() => followPress(post.author.id)}>Follow</button>
-                  </>
-                  }
-                  {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
-                   <button onClick={() => unfollowPress(post.author.id)} disabled={true}>Unfollow</button>
-                  }
-                  {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
-                  <>
-                  <h6>Now your are following: {post.author.user}</h6>
-                  <button onClick={() => followPress(post.author.id)} disabled={true}>Follow</button>
-                  </>
-                  }
-                  {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
-                  <button onClick={() => unfollowPress(post.author.id)}>Unfollow</button>
-                  }
+                    <>
+                    <button onClick={() => followPress(post.author.id)}>Follow</button>
+                    </>
+                    }
+                    {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
+                    <button onClick={() => unfollowPress(post.author.id)} disabled={true}>Unfollow</button>
+                    }
+                    {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
+                    <>
+                    <h6>Now your are following: {post.author.user}</h6>
+                    <button onClick={() => followPress(post.author.id)} disabled={true}>Follow</button>
+                    </>
+                    }
+                    {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
+                    <button onClick={() => unfollowPress(post.author.id)}>Unfollow</button>
+                    }
+                  </div>
                 </div>
                 {/* <ReportPost /> */}
               </div>        
