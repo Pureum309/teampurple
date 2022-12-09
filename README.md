@@ -26,12 +26,12 @@ email: test@gmail.com
 pwd: qwerty
 
 ## Task completed
-Signup and login - Sarah
-Post a TEXT ONLY tweet - Kaley
-Edit a tweet - Horus & Sarah
-Follow/unfollow other users - Sarah
-Report a inappropriate tweet - Kaycee
-Styling - Hazel
+- Signup and login - Sarah
+- Post a TEXT ONLY tweet - Kaley
+- Edit a tweet - Horus & Sarah
+- Follow/unfollow other users - Sarah
+- Report a inappropriate tweet - Kaycee
+- Styling - Hazel
 
 
 Thank you Chris! 
