@@ -148,6 +148,10 @@
   margin:10px 15px 10px 15px;
 }
 
+.button:focus {
+  background-color: #e7e4f4;
+}
+
 .input {
   background-color: #e8ecee;
   border: none;
@@ -270,11 +274,20 @@
   align-items: center;
 }
 
+.smallBtn:focus {
+  background-color: #604896;
+}
+
+.smallBtn:active {
+  background-color: #604896;
+}
+
 .icon {
  height: 20px;
  width: 20px;
  margin-right:5px
 }
+
 .btnCont {
   display: flex;
   flex-direction: row;

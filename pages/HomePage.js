@@ -131,32 +131,42 @@ export default function Home() {
                     <h2> {post.postText}</h2>
                     <h5>Posted by {post.author.user}</h5>
                     <div className={styles.btnCont}>
-                      <button className={styles.smallBtn} onClick={() => {
-                        if (window.confirm("Are you sure to report this post")){
-                        reportPress(post.author.user)}
-                      }}
-                      > 
-                      <MdOutlineReportProblem className={styles.icon}/>
-                      Report</button>
-                      {/* {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
+                    {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
+                        <button className={styles.smallBtn} onClick={() => {
+                          if (window.confirm("Are you sure to report this post")){
+                          reportPress(post.author.user)}
+                        }}
+                        > 
+                        <button className={styles.icon}/>
+                        Report</button>
+                      }
+                      {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
                     <>
-                    <button onClick={() => followPress(post.author.id)}>Follow</button>
+                    {/* <button onClick={() => followPress(post.author.id)}>Follow</button> */}
+                    <button className={styles.smallBtn} onClick={() => followPress(post.author.id)}> <RiUserFollowLine className={styles.icon}/> Follow</button>
                     </>
                     }
                     {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
-                    <button onClick={() => unfollowPress(post.author.id)} disabled={true}>Unfollow</button>
+                    <>
+                    {/* <button onClick={() => unfollowPress(post.author.id)} disabled={true}>Unfollow</button> */}
+                    <button className={styles.smallBtn} onClick={() => unfollowPress(post.author.id)} disabled={true}> <RiUserUnfollowLine className={styles.icon}/> Unfollow</button>
+                    </>
                     }
                     {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
                     <>
                     <h6>Now your are following: {post.author.user}</h6>
-                    <button onClick={() => followPress(post.author.id)} disabled={true}>Follow</button>
+                    {/* <button onClick={() => followPress(post.author.id)} disabled={true}>Follow</button> */}
+                    <button className={styles.smallBtn} onClick={() => followPress(post.author.id)} disabled={true}> <RiUserFollowLine className={styles.icon}/> Follow</button>
                     </>
                     }
                     {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
-                    <button onClick={() => unfollowPress(post.author.id)}>Unfollow</button>
-                    } */}
-                    <button className={styles.smallBtn}> <RiUserFollowLine className={styles.icon}/> Follow</button>
-                    <button className={styles.smallBtn}> <RiUserUnfollowLine className={styles.icon}/> Unfollow</button>
+                    <>
+                    {/* <button onClick={() => unfollowPress(post.author.id)}>Unfollow</button> */}
+                    <button className={styles.smallBtn} onClick={() => unfollowPress(post.author.id)}> <RiUserUnfollowLine className={styles.icon}/> Unfollow</button>
+                    </>
+                    }
+                    {/* <button className={styles.smallBtn} onClick={() => followPress(post.author.id)}> <RiUserFollowLine className={styles.icon}/> Follow</button> */}
+                    {/* <button className={styles.smallBtn} onClick={() => unfollowPress(post.author.id)}> <RiUserUnfollowLine className={styles.icon}/> Unfollow</button> */}
                   </div>
                 </div>
                 {/* <ReportPost /> */}
@@ -169,6 +179,7 @@ export default function Home() {
                     <h2> {post.postText}</h2>
                     <h5>Posted by {post.author.user}</h5>
                     <div className={styles.btnCont}>
+                      
                       <button className={styles.smallBtn} onClick={() => {
                         if (window.confirm("Are you sure to report this post")){
                         reportPress(post.author.user)}
@@ -178,20 +189,24 @@ export default function Home() {
                       Report</button>
                     {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
                     <>
-                    <button onClick={() => followPress(post.author.id)}>Follow</button>
+                    {/* <button onClick={() => followPress(post.author.id)}>Follow</button> */}
+                    <button className={styles.smallBtn} onClick={() => followPress(post.author.id)}> <RiUserFollowLine className={styles.icon}/> Follow</button>
                     </>
                     }
                     {followers?.find(follower => follower.follower == post.author.id) == null && currentUser.uid != post.author.id &&
-                    <button onClick={() => unfollowPress(post.author.id)} disabled={true}>Unfollow</button>
+                    // <button onClick={() => unfollowPress(post.author.id)} disabled={true}>Unfollow</button>
+                    <button className={styles.smallBtn} onClick={() => unfollowPress(post.author.id)} disabled={true}> <RiUserUnfollowLine className={styles.icon}/> Unfollow</button>
                     }
                     {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
                     <>
                     <h6>Now your are following: {post.author.user}</h6>
-                    <button onClick={() => followPress(post.author.id)} disabled={true}>Follow</button>
+                    <button className={styles.smallBtn} onClick={() => followPress(post.author.id)} disabled={true}> <RiUserFollowLine className={styles.icon}/> Follow</button>
+                    {/* <button onClick={() => followPress(post.author.id)} disabled={true}>Follow</button> */}
                     </>
                     }
                     {followers?.find(follower => follower.follower == post.author.id) != null && currentUser.uid != post.author.id &&
-                    <button onClick={() => unfollowPress(post.author.id)}>Unfollow</button>
+                    // <button onClick={() => unfollowPress(post.author.id)}>Unfollow</button>
+                    <button className={styles.smallBtn} onClick={() => unfollowPress(post.author.id)}> <RiUserUnfollowLine className={styles.icon}/> Unfollow</button>
                     }
                   </div>
                 </div>
