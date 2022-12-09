@@ -1,6 +1,10 @@
 import React, { useRef, useState } from "react";
 
 import { signup, login, logout, useAuth } from "../firebase/firebase.config.js";
+import styles from "../styles/Home.module.css";
+import Image from  'next/image';
+import logoImg from "../assets/logo.png";
+import bgImg from "../assets/bg.png";
 
 export default function App() {
   const [ loading, setLoading ] = useState(false);
@@ -8,6 +12,7 @@ export default function App() {
 
   const emailRef = useRef();
   const passwordRef = useRef();
+
 
   async function handleSignup() {
     setLoading(true);
@@ -33,17 +38,38 @@ export default function App() {
   }
 
   return (
-    <div id="main">
-      
-      <h1>Welcome to our Social media</h1>
+    <div className={styles.row}>
 
-      <div id="fields">
-        <input ref={emailRef} placeholder="Email" />
-        <input ref={passwordRef} type="password" placeholder="Password" />
+      <div className={styles.colRight}>
+        <Image 
+          src={bgImg} 
+          alt="/"
+          fill
+        />
       </div>
 
-      <button disabled={ loading || currentUser } onClick={handleSignup}>Sign Up</button>
-      <button disabled={ loading || currentUser } onClick={handleLogin}>Log In</button>
+      <div  className={styles.colLeft}>
+
+        <Image 
+          src={logoImg} 
+          alt="/"
+          width="160"
+          height="160"
+        />
+      
+        <h1>Welcome!</h1>
+
+          <input className={styles.input} ref={emailRef} placeholder="Email" />
+          <input className={styles.input} ref={passwordRef} type="password" placeholder="Password" />
+
+        <div className={styles.divider}>
+          <button className={styles.button} disabled={ loading || currentUser } onClick={handleSignup}>Sign Up</button>
+          <button className={styles.button} disabled={ loading || currentUser } onClick={handleLogin}>Log In</button>
+        </div>
+          
+       
+     </div>
     </div>
+    
   );
 }
