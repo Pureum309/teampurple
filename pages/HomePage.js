@@ -37,11 +37,11 @@ export default function Home() {
 
   const [postLists, setPostList] = useState(null);
   const [followers, setFollowers] = useState(null);
-  const [reportUser, setReportUser] = useState("");
+  const [reportUsers, setReportUsers] = useState([]);
 
   const postsCollectionRef = collection(db, "posts");
 
-  const [editbox,seteditbox] = useState(false)
+  const [editbox,seteditbox] = useState("")
 
   const [postTxt, setPostText] = useState("");
 
@@ -101,7 +101,7 @@ export default function Home() {
   }
   const reportPress = (user) => {
     console.log("report!!!" + user);
-    setReportUser(user);
+    setReportUsers([...reportUsers, user]);
   }
 
   useEffect(() => {
@@ -139,7 +139,7 @@ export default function Home() {
       <div id="PostDisplay">
       {postLists !== null &&
         postLists.map((post) => {
-          if (post.author.user != reportUser) {
+          if (reportUsers.indexOf(post.author.user) == -1) {
             return (
               <div className={styles.post}>
                 <div className={styles.postHeader}>
@@ -148,7 +148,7 @@ export default function Home() {
                       {currentUser.uid == post.author.id &&
                         <>
                         <div className={styles.editStyle}>
-                          { editbox === true &&
+                          { editbox === post.id &&
                             <>
                               <p>Edit Your Post</p>
                               <textarea
@@ -164,7 +164,7 @@ export default function Home() {
                             </>
                           }
                             <div>
-                              <button onClick={()=>seteditbox(true)} className={styles.smallBtn}>Edit</button>
+                              <button onClick={()=>seteditbox(post.id)} className={styles.smallBtn}>Edit</button>
                             </div>
                           </div>
                         </>
