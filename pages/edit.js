@@ -4,6 +4,8 @@ import React, {useState} from "react";
 import { collection, addDoc, setDoc, getDocs, getFirestore, getDoc, doc } from "firebase/firestore";
 import {db} from '../firebase/firebase.config'
 
+import styles from "../styles/Home.module.css";
+
 function EditPost({dev,seteditbox, id, route}){
 
     const [postText, setPostText] = useState("");
@@ -17,11 +19,11 @@ function EditPost({dev,seteditbox, id, route}){
     }
 
     return(
-        <div>
+        <div className={styles.btnCont}>
            <p>Edit Your Post</p>
            <textarea style={{width:"40%"}}
             placeholder="Edit your post..." onChangeText={(txt)=>setPostText(txt)}/>
-           <button onPress={UpdatePost}>update</button>
+           <button onClick={onClick} className={styles.smallBtn}>update</button>
         </div>
     )
 }
