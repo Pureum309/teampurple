@@ -258,12 +258,12 @@
 .smallBtn {
   background-color: #e7e4f4;
   height: 30px;
-  width: 7vw;
+  width: 8vw;
   border-radius: 20px;
   border: none;
   color:#000000;
   font-size: 12px;
-  margin:0px 10px 0px 10px;
+  margin:0px 10px 0px 5px;
   display: flex;
   flex-direction: row;
   justify-content: center;
