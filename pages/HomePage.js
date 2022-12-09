@@ -156,13 +156,16 @@ export default function Home() {
                                 onChange={(txt)=> {
                                   setPostText(txt.target.value)
                                 }}
+                                style={{paddingBottom: "1em"}}
                               />
                               <div className={styles.btnCont}>
-                                <button onClick={() => UpdatePost(post.id)} className={styles.smallBtn}>update</button>
+                                <button onClick={() => UpdatePost(post.id)} className={styles.editBtn}>update</button>
                               </div>
                             </>
                           }
-                          <button onClick={()=>seteditbox(true)} className={styles.smallBtn}>Edit</button>
+                            <div>
+                              <button onClick={()=>seteditbox(true)} className={styles.smallBtn}>Edit</button>
+                            </div>
                           </div>
                         </>
                       }

@@ -298,6 +298,23 @@
 .editStyle {
   display: flex;
   flex-direction: column;
+  /* justify-content: flex-end;
+  align-items: flex-end; */
+}
+
+.editBtn {
+  background-color: #e7e4f4;
+  height: 30px;
+  width: 8vw;
+  border-radius: 20px;
+  border: none;
+  color:#000000;
+  font-size: 12px;
+  margin:0px 10px 0px 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 600px) {
